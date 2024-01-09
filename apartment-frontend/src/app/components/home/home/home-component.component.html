@@ -1,0 +1,324 @@
+<!-- header home -->
+<app-header></app-header>
+<!--end header home -->
+
+<!--/ Form Search Star /-->
+
+<main id="main">
+  <!-- ======= Intro Single ======= -->
+  <section class="intro-single">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-lg-8">
+          <div class="title-single-box">
+            <h1 class="title-single">Our Amazing Properties</h1>
+            <form action="">
+              <div class="row">
+                <div class="col-md-6 mb">
+                  <div class="form-group mt-3">
+                    <app-type
+                      (typeSelected)="onTypeSelected2($event)"
+                    ></app-type>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-4">
+          <nav
+            aria-label="breadcrumb"
+            class="breadcrumb-box d-flex justify-content-lg-end"
+          ></nav>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Intro Single-->
+
+  <!-- ======= Property Grid ======= -->
+  <section class="property-grid grid">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="grid-option">
+            <a (click)="toggleForm()" class="btn btn-b">
+              {{ nameButton }}
+            </a>
+          </div>
+          <!-- box filter  -->
+          <div class="box" id="searchForm" *ngIf="showForm">
+            <div class="title-box-d">
+              <h3 class="title-d">Search Apartment</h3>
+            </div>
+
+            <form
+              class="form-a"
+              novalidate
+              (ngSubmit)="searchFilter()"
+              #searchForm="ngForm"
+            >
+              <div class="row">
+                <div class="col-md-12 mb">
+                  <div class="form-group">
+                    <label class="pb-2" for="Keyword"
+                      >Type Name or title of Apartment</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="Keyword"
+                      name="Keyword"
+                      placeholder="Name or title of apartment"
+                      [(ngModel)]="keyword"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="col-md-6 mb">
+                  <div class="form-group mt-3">
+                    <label class="pb-2" for="room">Rooms</label>
+                    <select
+                      class="form-control"
+                      id="room"
+                      name="room"
+                      [(ngModel)]="room"
+                      required
+                    >
+                      <option selected>Any</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6 mb">
+                  <div class="form-group mt-3">
+                    <app-type
+                      (typeSelected)="onTypeSelected($event)"
+                    ></app-type>
+                  </div>
+                </div>
+                <div class="col-md-6 mb">
+                  <div class="form-group mt-3">
+                    <label class="pb-2" for="bathrooms">Bathrooms</label>
+                    <select
+                      class="form-control"
+                      id="bathrooms"
+                      name="bathrooms"
+                      required
+                      [(ngModel)]="bathrooms"
+                    >
+                      <option selected>Any</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6 mb">
+                  <div class="form-group mt-3">
+                    <label class="pb-2" for="minPrice">Min Price</label>
+                    <select
+                      class="form-control"
+                      id="minPrice"
+                      name="minPrice"
+                      [(ngModel)]="minPrice"
+                      required
+                    >
+                      <option value="0" selected>Unlimited</option>
+                      <option value="1000000">1,000,000</option>
+                      <option value="5000000">5,000,000</option>
+                      <option value="10000000">10,000,000</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6 mb">
+                  <div class="form-group mt-3">
+                    <app-address
+                      (wardSelected)="onWardSelected($event)"
+                    ></app-address>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <button
+                    type="submit"
+                    class="btn btn-b"
+                    style="margin-bottom: 10px"
+                    [disabled]="!searchForm.form.valid"
+                  >
+                    Search Apartment
+                  </button>
+                </div>
+              </div>
+            </form>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+          </div>
+        </div>
+
+        <div class="col-md-4" *ngFor="let apartment of apartments">
+          <div>
+            <div>
+              <div
+                class="card-box-a card-shadow"
+                style="cursor: pointer"
+                (click)="detailApartment(apartment.idApartment)"
+              >
+                <div class="img-box-a">
+                  <img
+                    src="https://thumbor.forbes.com/thumbor/fit-in/1290x/https://www.forbes.com/advisor/wp-content/uploads/2022/10/condo-vs-apartment.jpeg.jpg"
+                    alt=""
+                    class="img-a img-fluid"
+                  />
+                </div>
+                <div class="card-overlay">
+                  <div class="card-overlay-a-content">
+                    <div class="card-header-a">
+                      <h2 class="card-title-a">
+                        <a (click)="detailApartment(apartment.idApartment)">
+                          {{ apartment.title }}</a
+                        >
+                      </h2>
+                    </div>
+                    <div class="card-body-a">
+                      <div class="price-box d-flex">
+                        <span class="price-a"
+                          >rent | {{ apartment.price | amountFormat }} VND</span
+                        >
+                      </div>
+                      <a
+                        (click)="detailApartment(apartment.idApartment)"
+                        style="cursor: pointer"
+                        class="link-a"
+                        >Click here to view
+                        <span class="bi bi-chevron-right"></span>
+                      </a>
+                    </div>
+                    <div class="card-footer-a">
+                      <ul class="card-info d-flex justify-content-around">
+                        <li>
+                          <h4 class="card-info-title">Area</h4>
+                          <span
+                            >{{ apartment.area }}m
+                            <sup>2</sup>
+                          </span>
+                        </li>
+                        <li>
+                          <h4 class="card-info-title">Room</h4>
+                          <span>{{ apartment.room }}</span>
+                        </li>
+                        <li>
+                          <h4 class="card-info-title">Baths</h4>
+                          <span>{{ apartment.baths }}</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          infiniteScroll
+          [infiniteScrollDistance]="1"
+          [infiniteScrollThrottle]="1000"
+          (scrolled)="onScroll()"
+        ></div>
+      </div>
+      <!-- end div infiniteScroll -->
+
+      <!-- Alert no more post -->
+      <div *ngIf="!isEmptyApartment" class="row pb-5">
+        <div class="col-md-12 d-flex justify-content-center">
+          <div class="text-muted h5 alert alert-danger p-2">
+            No more Data to show
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="apartments.length === 0" class="row pb-5">
+        <div class="col-md-12 d-flex justify-content-center">
+          <div class="text-muted h5 alert alert-danger p-2">
+            <div>
+              <td colspan="8" class="text-danger">No data found</td>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="row">
+        <div class="col-sm-12">
+          <pagination-controls
+            previousLabel=""
+            nextLabel=""
+            (pageChange)="onTableDataChange($event)"
+          >
+          </pagination-controls>
+        </div>
+      </div> -->
+    </div>
+  </section>
+  <!-- End Property Grid Single-->
+</main>
+<div
+  class="loadingio-spinner-dual-ball-rt5hlxl5nk"
+  style="
+    position: absolute;
+    /* top: 50%; */
+    left: 50%;
+    transform: translate(-50%, -50%);
+  "
+  *ngIf="isEmptyApartment"
+>
+  <div class="ldio-iweqm282ol">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+
+<!-- ======= Footer ======= -->
+<section class="section-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-4">
+        <div class="widget-a">
+          <div class="w-header-a">
+            <h3 class="w-title-a text-brand">DuyAnh Apartment</h3>
+          </div>
+          <div class="w-body-a">
+            <p class="w-text-a color-text-a">
+              For I do not think that anyone should practice any kind of work
+              except so that some advantage may be obtained from the family, but
+              it should not be rushed.
+            </p>
+          </div>
+          <div class="w-footer-a">
+            <ul class="list-unstyled">
+              <li class="color-a">
+                <span class="color-text-a">Phone .</span>
+                +84868888548
+              </li>
+              <li class="color-a">
+                <span class="color-text-a">Email .</span> ndanhx@gmail.com
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>
+<!-- End  Footer -->

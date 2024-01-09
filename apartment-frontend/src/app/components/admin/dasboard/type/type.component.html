@@ -1,0 +1,18 @@
+<div class="row mb-3">
+  <label for="city" class="col-sm-2 col-form-label">Type </label>
+  <div class="col-sm-10">
+    <select
+      id="city"
+      class="form-select"
+      aria-label="Default select example"
+      style="width: 200px"
+      [(ngModel)]="selectedIdType"
+      (change)="getIdType()"
+    >
+      <option value="" selected>Open this Type</option>
+      <option *ngFor="let selectType of types" [value]="selectType.idType">
+        {{ selectType.nameType }}
+      </option>
+    </select>
+  </div>
+</div>

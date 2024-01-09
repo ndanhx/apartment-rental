@@ -1,0 +1,90 @@
+<div>
+  <!-- header home -->
+  <app-header></app-header>
+  <!--end header home -->
+  <app-nav></app-nav>
+
+  <div class="content" style="padding-left: 310px; padding-top: 80px">
+    <div class="col ml-auto">
+      <button type="button" class="btn btn-primary" (click)="exportExcel()">
+        Download File
+      </button>
+    </div>
+
+    <!-- Table with stripped rows -->
+    <table class="table table-striped" id="datatable">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Type</th>
+          <th scope="col">Description</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Status</th>
+          <th scope="col">Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let payment of payments
+              | paginate
+                : {
+                    itemsPerPage: tableSize,
+                    currentPage: page,
+                    totalItems: count
+                  };
+            let i = index
+          "
+        >
+          <th scope="row">{{ payment.idPayment }}</th>
+          <td>
+            <a style="cursor: pointer">
+              {{ payment.paymentMethod }}
+            </a>
+          </td>
+          <td>{{ payment.description }}</td>
+          <td
+            *ngIf="payment.totalAmount < 0"
+            style="color: red; font-weight: bold"
+          >
+            {{ payment.totalAmount | amountFormat }} VND
+          </td>
+          <td
+            *ngIf="payment.totalAmount > 0"
+            style="color: green; font-weight: bold"
+          >
+            {{ payment.totalAmount | amountFormat }} VND
+          </td>
+          <td>
+            <a
+              *ngIf="payment.status === 1"
+              style="text-decoration: none"
+              class="badge bg-success"
+            >
+              success</a
+            >
+            <a
+              *ngIf="payment.status === 0"
+              style="text-decoration: none"
+              class="badge bg-danger"
+            >
+              failed</a
+            >
+          </td>
+          <td *ngIf="account.isActive == 1"></td>
+          <td>{{ payment.paymentDate | date : "dd/MM/yyyy" }}</td>
+        </tr>
+        <tr *ngIf="payments.length === 0">
+          <td colspan="8" class="text-danger">No data found</td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- End Table with stripped rows -->
+    <pagination-controls
+      previousLabel=""
+      nextLabel=""
+      (pageChange)="onTableDataChange($event)"
+    >
+    </pagination-controls>
+  </div>
+</div>

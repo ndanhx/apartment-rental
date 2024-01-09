@@ -1,0 +1,117 @@
+<div>
+  <!-- header home -->
+  <app-header></app-header>
+  <!--end header home -->
+  <app-nav-censor></app-nav-censor>
+
+  <div class="content" style="padding-left: 310px; padding-top: 80px">
+    <!-- Table with stripped rows -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Title</th>
+          <th scope="col">Name</th>
+          <th scope="col">Room</th>
+          <th scope="col">Area</th>
+          <th scope="col">Price</th>
+          <th scope="col">Bath</th>
+          <th scope="col">Listing Status</th>
+          <th scope="col">Rental Status</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let apartment of apartments
+              | paginate
+                : {
+                    itemsPerPage: tableSize,
+                    currentPage: page,
+                    totalItems: count
+                  };
+            let i = index
+          "
+        >
+          <th scope="row">{{ apartment.idApartment }}</th>
+          <td>
+            <a
+              (click)="detailApartment(apartment.idApartment)"
+              style="cursor: pointer"
+            >
+              {{ apartment.title }}
+            </a>
+          </td>
+          <td>{{ apartment.nameApartment }}</td>
+          <td>{{ apartment.room }}</td>
+          <td>{{ apartment.area }}</td>
+          <td>{{ apartment.price }}</td>
+          <td>{{ apartment.baths }}</td>
+          <td>
+            <a
+              *ngIf="apartment.listingStatus == 1"
+              style="text-decoration: none; cursor: pointer"
+              class="badge bg-success"
+              >Post</a
+            >
+            <a
+              *ngIf="apartment.listingStatus == 2"
+              style="text-decoration: none; cursor: pointer"
+              class="badge bg-warning"
+              >Pending</a
+            >
+            <a
+              *ngIf="apartment.listingStatus == 0"
+              style="text-decoration: none; cursor: pointer"
+              class="badge bg-danger"
+              >unPost</a
+            >
+          </td>
+          <td>
+            <a
+              *ngIf="apartment.rentalStatus == 1"
+              style="text-decoration: none; cursor: pointer"
+              class="badge bg-success"
+              (click)="soldApartment(apartment)"
+              >active</a
+            >
+            <a
+              *ngIf="apartment.rentalStatus == 0"
+              style="text-decoration: none; cursor: pointer"
+              class="badge bg-danger"
+              (click)="activeApartment(apartment)"
+              >sold out</a
+            >
+          </td>
+          <td>
+            <button
+              style="margin-right: 4px"
+              class="btn btn-info"
+              (click)="updateApartment(apartment.idApartment)"
+            >
+              <i class="bi bi-pencil-square"></i>
+            </button>
+
+            <button
+              class="btn btn-danger"
+              (click)="deleteApartment(apartment.idApartment)"
+            >
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="apartments.length === 0">
+          <td colspan="8" class="text-danger">No data found</td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- End Table with stripped rows -->
+    <pagination-controls
+      previousLabel=""
+      nextLabel=""
+      (pageChange)="onTableDataChange($event)"
+    >
+    </pagination-controls>
+  </div>
+</div>

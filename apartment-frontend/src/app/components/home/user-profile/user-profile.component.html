@@ -1,0 +1,224 @@
+<div>
+  <!-- header home -->
+  <app-header></app-header>
+  <!--end header home -->
+  <app-nav></app-nav>
+
+  <main class="content" style="padding-left: 330px; padding-top: 80px">
+    <div class="pagetitle">
+      <h1>Profile</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+          <li class="breadcrumb-item">Users</li>
+          <li class="breadcrumb-item active">Profile</li>
+        </ol>
+      </nav>
+    </div>
+    <!-- End Page Title -->
+
+    <section class="section profile">
+      <div class="row">
+        <div class="col-xl-4">
+          <div class="card">
+            <div
+              class="card-body profile-card pt-4 d-flex flex-column align-items-center"
+            >
+              <img
+                src="assets/img/profile-img.jpg"
+                alt="Profile"
+                class="rounded-circle"
+              />
+              <h2>
+                {{ account.name }}
+
+                <i
+                  *ngIf="account.verify === 1"
+                  class="bi-check-circle-fill"
+                  style="color: green"
+                  title="Verified account"
+                ></i>
+              </h2>
+
+              <h3
+                class="money-profile"
+                style="background: beige; border: aliceblue; margin: 15px"
+              >
+                Amount: {{ account.amount | amountFormat }} VND
+              </h3>
+
+              <h3 *ngIf="account.role === 3">Censor</h3>
+              <h3 *ngIf="account.role === 1">Seller</h3>
+              <h3 *ngIf="account.role === 2">Customer</h3>
+              <h3 style="margin: 12px">
+                Join at: {{ account.createdAt | date }}
+              </h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-8">
+          <div class="card">
+            <div class="card-body pt-3">
+              <!-- Bordered Tabs -->
+              <h4>Information</h4>
+
+              <div class="tab-content pt-2">
+                <div id="profile-edit">
+                  <!-- Profile Edit Form -->
+                  <form (ngSubmit)="saveChange()">
+                    <div class="row mb-3">
+                      <label
+                        for="username"
+                        class="col-md-4 col-lg-3 col-form-label"
+                        >Username</label
+                      >
+                      <div class="col-md-8 col-lg-9">
+                        <input
+                          readonly="true"
+                          name="username"
+                          type="text"
+                          class="form-control"
+                          id="username"
+                          [(ngModel)]="account.username"
+                          disabled=""
+                        />
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="name" class="col-md-4 col-lg-3 col-form-label"
+                        >Full Name</label
+                      >
+                      <div class="col-md-8 col-lg-9">
+                        <input
+                          name="name"
+                          type="text"
+                          class="form-control"
+                          id="fullName"
+                          [(ngModel)]="account.name"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label
+                        for="Phone"
+                        class="col-md-4 col-lg-3 col-form-label"
+                        >Phone Number</label
+                      >
+                      <div class="col-md-8 col-lg-9">
+                        <input
+                          name="phone"
+                          type="text"
+                          class="form-control"
+                          id="phone"
+                          [(ngModel)]="account.phone"
+                          pattern="[0-9]+"
+                          minlength="10"
+                          maxlength="10"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label
+                        for="Email"
+                        class="col-md-4 col-lg-3 col-form-label"
+                        >Email</label
+                      >
+                      <div class="col-md-8 col-lg-9">
+                        <input
+                          name="email"
+                          type="email"
+                          class="form-control"
+                          id="Email"
+                          [(ngModel)]="account.email"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-primary">
+                        Save Changes
+                      </button>
+                    </div>
+                  </form>
+
+                  <!-- End Profile Edit Form -->
+                </div>
+                <hr />
+                <h4>Change Password</h4>
+                <br />
+                <div id="profile-change-password">
+                  <!-- Change Password Form -->
+                  <form (ngSubmit)="changePassword()">
+                    <div class="row mb-3">
+                      <label
+                        for="currentPassword"
+                        class="col-md-4 col-lg-3 col-form-label"
+                        >Current Password</label
+                      >
+                      <div class="col-md-8 col-lg-9">
+                        <input
+                          [(ngModel)]="currentPassword"
+                          name="password"
+                          type="password"
+                          class="form-control"
+                          id="currentPassword"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label
+                        for="newPassword"
+                        class="col-md-4 col-lg-3 col-form-label"
+                        >New Password</label
+                      >
+                      <div class="col-md-8 col-lg-9">
+                        <input
+                          name="newpassword"
+                          [(ngModel)]="newPassword"
+                          type="password"
+                          class="form-control"
+                          id="newPassword"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label
+                        for="renewpassword"
+                        class="col-md-4 col-lg-3 col-form-label"
+                        >Re-enter New Password</label
+                      >
+                      <div class="col-md-8 col-lg-9">
+                        <input
+                          name="renewpassword"
+                          [(ngModel)]="renewpassword"
+                          type="password"
+                          class="form-control"
+                          id="renewpassword"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-primary">
+                        Change Password
+                      </button>
+                    </div>
+                  </form>
+                  <!-- End Change Password Form -->
+                </div>
+              </div>
+              <!-- End Bordered Tabs -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- End #main -->
+</div>

@@ -1,0 +1,91 @@
+<div>
+  <!-- header home -->
+  <app-header></app-header>
+  <!--end header home -->
+  <app-navigate-manager-component></app-navigate-manager-component>
+
+  <div class="content" style="padding-left: 310px; padding-top: 80px">
+    <button type="button" class="btn btn-primary" (click)="openModal()">
+      Create Type
+    </button>
+
+    <!-- Table with stripped rows -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let getType of types">
+          <th scope="row">{{ getType.idType }}</th>
+          <td>{{ getType.nameType }}</td>
+          <td>
+            <button
+              style="margin-right: 4px"
+              class="btn btn-info"
+              data-bs-toggle="modal"
+              data-bs-target="#addEditModal"
+              (click)="edit(getType)"
+            >
+              <i class="bi bi-pencil-square"></i>
+            </button>
+
+            <button class="btn btn-danger" (click)="deteleType(getType.idType)">
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div id="createTypeModal" tabindex="-1" role="dialog" class="modal">
+      <form (ngSubmit)="onsubmitCreate()">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Create Type</h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+                (click)="closeModal()"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row mb-3">
+                <label for="name" class="col-sm-2 col-form-label">Name</label>
+                <div class="col-sm-10">
+                  <input
+                    id="name"
+                    [(ngModel)]="addType.nameType"
+                    name="name"
+                    type="text"
+                    class="form-control"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Save</button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+                (click)="closeModal()"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

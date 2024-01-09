@@ -1,0 +1,123 @@
+<aside id="sidebar" class="sidebar">
+  <ul class="sidebar-nav" id="sidebar-nav">
+    <li class="nav-item">
+      <a class="nav-link collapsed" routerLink="/index-admin">
+        <i class="bi bi-grid"></i>
+        <span>Dashboard</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a
+        class="nav-link collapsed"
+        data-bs-target="#forms-nav"
+        data-bs-toggle="collapse"
+        routerLink="/apartment"
+      >
+        <i class="bi bi-journal-text"></i><span>Apartment</span>
+      </a>
+      <ul id="forms-nav" class="nav-content" data-bs-parent="#sidebar-nav">
+        <li>
+          <a
+            routerLink="/apartment"
+            style="text-decoration: none; cursor: pointer"
+          >
+            <i class="bi bi-circle"></i><span>All</span>
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/apartment/active"
+            style="text-decoration: none; cursor: pointer"
+          >
+            <i class="bi bi-circle"></i><span>Active</span>
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/apartment/sold-out"
+            style="text-decoration: none; cursor: pointer"
+          >
+            <i class="bi bi-circle"></i><span>Sold</span>
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/apartment/pending"
+            style="text-decoration: none; cursor: pointer"
+          >
+            <i class="bi bi-circle"></i><span>Pending</span>
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/apartment/posted"
+            style="text-decoration: none; cursor: pointer"
+          >
+            <i class="bi bi-circle"></i><span>Posted</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" routerLink="/account">
+        <i class="bi bi-person"></i>
+        <span>Account</span>
+      </a>
+      <ul id="forms-nav" class="nav-content" data-bs-parent="#sidebar-nav">
+        <li>
+          <a
+            routerLink="/account/verified"
+            style="text-decoration: none; cursor: pointer"
+          >
+            <i class="bi bi-circle"></i><span>Verified</span>
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/account/locked"
+            style="text-decoration: none; cursor: pointer"
+          >
+            <i class="bi bi-circle"></i><span>Lock</span>
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/account/active"
+            style="text-decoration: none; cursor: pointer"
+          >
+            <i class="bi bi-circle"></i><span>Acitved</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link collapsed"
+        data-bs-target="#forms-nav"
+        data-bs-toggle="collapse"
+        routerLink="/payment/all"
+      >
+        <i class="bi bi-credit-card"></i>
+        <span>Transaction</span>
+      </a>
+    </li>
+
+    <!-- End Components Nav -->
+
+    <li class="nav-item">
+      <a
+        class="nav-link collapsed"
+        data-bs-target="#components-nav"
+        data-bs-toggle="collapse"
+        routerLink="/type"
+      >
+        <i class="bi bi-menu-button-wide"></i><span>Property type</span>
+      </a>
+    </li>
+
+    <!-- End Blank Page Nav -->
+  </ul>
+</aside>
+<!-- End Sidebar-->

@@ -1,0 +1,53 @@
+<div class="row mb-3">
+  <label for="city" class="col-sm-2 col-form-label">City</label>
+  <div class="col-sm-10">
+    <select
+      style="width: 250px"
+      id="city"
+      class="form-select"
+      aria-label="Default select example"
+      [(ngModel)]="selectedCity"
+      (change)="onCityChange()"
+      required
+    >
+      <option value="" selected>Open this select City</option>
+      <option *ngFor="let city of cities" [value]="city.idCity">
+        {{ city.nameCity }}
+      </option>
+    </select>
+  </div>
+</div>
+<div class="row mb-3">
+  <label class="col-sm-2 col-form-label">District</label>
+  <div class="col-sm-10">
+    <select
+      required
+      style="width: 250px"
+      class="form-select"
+      aria-label="Default select example"
+      [(ngModel)]="selectedDistrict"
+      (change)="onDistrictChange()"
+    >
+      <option *ngFor="let district of districts" [value]="district.idDistrict">
+        {{ district.nameDistrict }}
+      </option>
+    </select>
+  </div>
+</div>
+<div class="row mb-3">
+  <label class="col-sm-2 col-form-label">Ward</label>
+  <div class="col-sm-10">
+    <select
+      required
+      style="width: 250px"
+      class="form-select"
+      aria-label="Default select example"
+      [(ngModel)]="selectedWard"
+      (change)="getIdWard()"
+    >
+      <option *ngFor="let ward of wards" [value]="ward.idWard">
+        {{ ward.nameWard }}
+      </option>
+    </select>
+  </div>
+</div>

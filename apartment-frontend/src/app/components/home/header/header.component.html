@@ -1,0 +1,107 @@
+<!-- ======= Header/Navbar ======= -->
+<nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
+  <div class="container">
+    <button
+      class="navbar-toggler collapsed"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarDefault"
+      aria-controls="navbarDefault"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <a class="navbar-brand text-brand" href="http://localhost:4200/"
+      >DuyAnh<span class="color-b">Apartment</span></a
+    >
+
+    <div
+      class="navbar-collapse collapse justify-content-center"
+      id="navbarDefault"
+    >
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" target="_blank">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            *ngIf="account?.role === 1"
+            routerLink="/seller/profile"
+            >Management</a
+          >
+          <a
+            class="nav-link"
+            *ngIf="account?.role === 0"
+            routerLink="/index-admin"
+            >Management</a
+          >
+          <a
+            class="nav-link"
+            *ngIf="account?.role === 3"
+            routerLink="/censor/apartment"
+            >Management</a
+          >
+        </li>
+
+        <li class="nav-item dropdown" *ngIf="checkLogin()">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Hello, {{ username }}</a
+          >
+
+          <!-- href="http://localhost:8080/apartment-backend-1.0-SNAPSHOT/vnpay_pay.jsp" -->
+          <div class="dropdown-menu">
+            <a
+              style="cursor: pointer"
+              (click)="deposit(account)"
+              class="dropdown-item"
+              >Deposit</a
+            >
+
+            <a style="cursor: pointer" class="dropdown-item" (click)="logout()"
+              >Logout</a
+            >
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <a
+      type="button"
+      class="btn btn-b-n navbar-toggle-box navbar-toggle-box-collapse"
+      data-bs-toggle="collapse"
+      *ngIf="checkLogin()"
+    >
+      Amount: {{ account.amount | amountFormat }} VND
+    </a>
+    <button
+      type="button"
+      class="btn btn-b-n navbar-toggle-box navbar-toggle-box-collapse"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarTogglerDemo01"
+      *ngIf="!checkLogin()"
+      routerLink="/login"
+    >
+      Login
+      <i class="bi bi"></i>
+    </button>
+  </div>
+</nav>
+<!-- End Header/Navbar -->

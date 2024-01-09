@@ -1,0 +1,110 @@
+<div>
+  <!-- header home -->
+  <app-header></app-header>
+  <!--end header home -->
+  <app-navigate-manager-component></app-navigate-manager-component>
+
+  <div class="content" style="padding-left: 310px; padding-top: 80px">
+    <div class="row justify-content-between d-flex">
+      <div class="mb-4 col-8">
+        <input
+          [(ngModel)]="inputUsername"
+          (ngModelChange)="inputUsernameControl.next($event)"
+          type="search"
+          class="form-control"
+          id="datatable-search-input"
+          placeholder="search username..."
+        />
+      </div>
+      <div class="col-4">
+        <button
+          type="button"
+          class="btn btn-primary"
+          routerLink="/account/create"
+        >
+          Create Account
+        </button>
+      </div>
+    </div>
+    <!-- Table with stripped rows -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Username</th>
+          <th scope="col">Name</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Email</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Join date</th>
+          <th scope="col">Active </th>
+
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let account of accounts
+              | paginate
+                : {
+                    itemsPerPage: tableSize,
+                    currentPage: page,
+                    totalItems: count
+                  };
+            let i = index
+          "
+        >
+          <th scope="row">{{ account.idAccount }}</th>
+          <td>{{ account.username }}</td>
+          <td>{{ account.name }}</td>
+          <td>{{ account.phone }}</td>
+          <td>{{ account.email }}</td>
+          <td>{{ account.amount }}</td>
+          <td>{{ account.createdAt | date : "dd/MM/yyyy" }}</td>
+          <td *ngIf="account.isActive == 0">
+            <a
+              style="text-decoration: none; cursor: pointer"
+              (click)="unlockAccount(account)"
+              class="badge bg-danger"
+              >Locked</a
+            >
+          </td>
+          <td *ngIf="account.isActive == 1">
+            <a
+              style="text-decoration: none; cursor: pointer"
+              (click)="lockAccount(account)"
+              class="badge bg-success"
+              >Actived</a
+            >
+          </td>
+
+          <td>
+            <button
+              style="margin-right: 4px"
+              (click)="updateAccount(account.idAccount)"
+              class="btn btn-info"
+            >
+              <i class="bi bi-pencil-square"></i>
+            </button>
+
+            <button
+              (click)="deleteAccount(account.idAccount)"
+              class="btn btn-danger"
+            >
+              <i class="bi bi-trash"></i>
+<div></div>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- End Table with stripped rows -->
+    <pagination-controls
+      previousLabel=""
+      nextLabel=""
+      (pageChange)="onTableDataChange($event)"
+    >
+    </pagination-controls>
+  </div>
+</div>

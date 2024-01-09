@@ -1,0 +1,71 @@
+<aside id="sidebar" class="sidebar">
+  <ul class="sidebar-nav" id="sidebar-nav">
+    <br />
+    <li class="nav-item">
+      <a
+        class="nav-link collapsed"
+        data-bs-target="#forms-nav"
+        data-bs-toggle="collapse"
+        routerLink="/seller/profile"
+      >
+        <i class="bi bi-person-fill-gear"></i>
+        <span>Profile</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link collapsed"
+        data-bs-target="#forms-nav"
+        data-bs-toggle="collapse"
+        routerLink="/seller/apartment"
+      >
+        <i class="bi bi-journal-text"></i><span>Apartment</span>
+      </a>
+      <ul id="forms-nav" class="nav-content" data-bs-parent="#sidebar-nav">
+        <li>
+          <a
+            routerLink="/seller/apartment"
+            style="text-decoration: none; cursor: pointer"
+          >
+            <i class="bi bi-circle"></i><span>All</span>
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/seller/apartment/posted"
+            style="text-decoration: none; cursor: pointer"
+          >
+            <i class="bi bi-circle"></i><span>Posted</span>
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/seller/apartment/pending"
+            style="text-decoration: none; cursor: pointer"
+          >
+            <i class="bi bi-circle"></i><span>Pending</span>
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/seller/apartment/sold"
+            style="text-decoration: none; cursor: pointer"
+          >
+            <i class="bi bi-circle"></i><span>Sold</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link collapsed"
+        data-bs-target="#forms-nav"
+        data-bs-toggle="collapse"
+        routerLink="/seller/transaction"
+      >
+        <i class="bi bi-credit-card"></i>
+        <span>Transaction</span>
+      </a>
+    </li>
+  </ul>
+</aside>

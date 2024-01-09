@@ -1,0 +1,185 @@
+<div>
+  <!-- header home -->
+  <app-header></app-header>
+  <!--end header home -->
+  <app-nav></app-nav>
+
+  <div class="content" style="padding-left: 310px; padding-top: 80px">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Update Apartment</h5>
+
+        <form (ngSubmit)="onSubmit()" #updateApartmentForm="ngForm">
+          <div class="row mb-3">
+            <label for="name" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+              <input
+                id="name"
+                [(ngModel)]="apartment.nameApartment"
+                name="name"
+                type="text"
+                class="form-control"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="name" class="col-sm-2 col-form-label"
+              >Title Listing</label
+            >
+            <div class="col-sm-10">
+              <input
+                id="name"
+                [(ngModel)]="apartment.title"
+                name="name"
+                type="text"
+                class="form-control"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="room" class="col-sm-2 col-form-label">Room</label>
+            <div class="col-sm-10">
+              <input
+                id="room"
+                [(ngModel)]="apartment.room"
+                name="apartment"
+                type="number"
+                class="form-control"
+                required
+              />
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="baths" class="col-sm-2 col-form-label">Bath</label>
+            <div class="col-sm-10">
+              <input
+                id="baths"
+                [(ngModel)]="apartment.baths"
+                name="baths"
+                type="number"
+                class="form-control"
+                required
+              />
+            </div>
+          </div>
+          <app-type (typeSelected)="onTypeSelected($event)"></app-type>
+
+          <div class="row mb-3">
+            <label for="area" class="col-sm-2 col-form-label">Area</label>
+            <div class="col-sm-10">
+              <input
+                id="area"
+                [(ngModel)]="apartment.area"
+                name="area"
+                type="number"
+                class="form-control"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="price" class="col-sm-2 col-form-label">Price</label>
+            <div class="col-sm-10">
+              <input
+                id="price"
+                [(ngModel)]="apartment.price"
+                name="price"
+                type="number"
+                class="form-control"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="amount" class="col-sm-2 col-form-label"
+              >Description</label
+            >
+            <div class="col-sm-10">
+              <textarea
+                id="amount"
+                [(ngModel)]="apartment.description"
+                name="amount"
+                type="number"
+                class="form-control"
+                required
+              ></textarea>
+            </div>
+          </div>
+          <hr />
+          <div class="row mb-3">
+            <label for="address" class="col-sm-2 col-form-label">Address</label>
+            <div class="col-sm-10">
+              <app-address
+                (wardSelected)="onWardSelected($event)"
+              ></app-address>
+              <label for="streetName" class="col-sm-2 col-form-label"
+                >Street Name</label
+              >
+              <input
+                id="streetName"
+                [(ngModel)]="apartment.streetName"
+                name="streetName"
+                type="text"
+                class="form-control"
+                required
+              />
+            </div>
+          </div>
+          <hr />
+          <fieldset class="row mb-3">
+            <legend class="col-form-label col-sm-2 pt-0">Rental Status</legend>
+            <div class="col-sm-10">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="gridRadios"
+                  id="gridRadios1"
+                  value="0"
+                  [(ngModel)]="apartment.rentalStatus"
+                  required
+                />
+                <label class="form-check-label" for="gridRadios1">
+                  Rented
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="gridRadios"
+                  id="gridRadios2"
+                  value="1"
+                  [(ngModel)]="apartment.rentalStatus"
+                  required
+                  checked
+                />
+                <label class="form-check-label" for="gridRadios2">
+                  Available
+                </label>
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="row mb-3">
+            <div class="col-sm-10">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="!updateApartmentForm.form.valid"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

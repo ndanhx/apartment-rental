@@ -1,0 +1,100 @@
+<div>
+  <!-- header home -->
+  <app-header></app-header>
+  <!--end header home -->
+  <app-nav-censor></app-nav-censor>
+  <div class="content" style="padding-left: 310px; padding-top: 80px">
+    <div class="row justify-content-between d-flex">
+      <div class="mb-4 col-8">
+        <input
+          [(ngModel)]="inputUsername"
+          (ngModelChange)="inputUsernameControl.next($event)"
+          type="search"
+          class="form-control"
+          id="datatable-search-input"
+          placeholder="search username..."
+        />
+      </div>
+    </div>
+    <!-- Table with stripped rows -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Username</th>
+          <th scope="col">Name</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Email</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Verify</th>
+          <th scope="col">Active</th>
+          <th scope="col">Join date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let account of accounts
+              | paginate
+                : {
+                    itemsPerPage: tableSize,
+                    currentPage: page,
+                    totalItems: count
+                  };
+            let i = index
+          "
+        >
+          <th scope="row">{{ account.idAccount }}</th>
+          <td>{{ account.username }}</td>
+          <td>{{ account.name }}</td>
+          <td>{{ account.phone }}</td>
+          <td>{{ account.email }}</td>
+          <td>{{ account.amount }}</td>
+          <td>
+            <a
+              *ngIf="account.verify == 0"
+              style="text-decoration: none; cursor: pointer"
+              class="badge bg-danger"
+              (click)="verifyAccount(account)"
+              >No verify</a
+            >
+
+            <a
+              *ngIf="account.verify == 1"
+              style="text-decoration: none; cursor: pointer"
+              class="badge bg-success"
+              (click)="removeVerifyAccount(account)"
+              >Verified</a
+            >
+          </td>
+          <td>
+            <a
+              *ngIf="account.isActive == 0"
+              style="text-decoration: none; cursor: pointer"
+              (click)="unlockAccount(account)"
+              class="badge bg-danger"
+              >Locked</a
+            >
+
+            <a
+              *ngIf="account.isActive == 1"
+              style="text-decoration: none; cursor: pointer"
+              (click)="lockAccount(account)"
+              class="badge bg-success"
+              >Actived</a
+            >
+          </td>
+
+          <td>{{ account.createdAt | date : "dd/MM/yyyy" }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- End Table with stripped rows -->
+    <pagination-controls
+      previousLabel=""
+      nextLabel=""
+      (pageChange)="onTableDataChange($event)"
+    >
+    </pagination-controls>
+  </div>
+</div>

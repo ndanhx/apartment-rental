@@ -1,0 +1,189 @@
+<main>
+  <div class="container">
+    <section
+      class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4"
+    >
+      <div class="container">
+        <div class="row justify-content-center">
+          <div
+            class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center"
+          >
+            <div class="d-flex justify-content-center py-4">
+              <a
+                routerLink="/home"
+                class="logo d-flex align-items-center w-auto"
+              >
+                <img src="assets/img/logo.png" alt="" />
+                <span class="d-none d-lg-block">DuyAnh Apartment</span>
+              </a>
+            </div>
+            <!-- End Logo -->
+
+            <div class="card mb-3">
+              <div class="card-body">
+                <div class="pt-4 pb-2">
+                  <h5 class="card-title text-center pb-0 fs-4">
+                    Create an Account
+                  </h5>
+                  <p class="text-center small">
+                    Enter your personal details to create account
+                  </p>
+                </div>
+
+                <form
+                  class="row g-3 needs-validation"
+                  novalidate
+                  (ngSubmit)="onRegister()"
+                  #registrationForm="ngForm"
+                >
+                  <div class="col-12">
+                    <div class="input-group has-validation">
+                      <span class="input-group-text" id="inputGroupPrepend"
+                        >@</span
+                      >
+                      <input
+                        placeholder="Username"
+                        type="text"
+                        name="username"
+                        class="form-control"
+                        id="yourUsername"
+                        [(ngModel)]="account.username"
+                        required
+                      />
+                      <div class="invalid-feedback">
+                        Please choose a username.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <input
+                      placeholder="Full name"
+                      type="text"
+                      name="name"
+                      class="form-control"
+                      [(ngModel)]="account.name"
+                      id="yourName"
+                      required
+                    />
+                    <div class="invalid-feedback">Please, enter your name!</div>
+                  </div>
+                  <div class="col-12">
+                    <input
+                      placeholder="Phone number"
+                      type="number"
+                      name="phone"
+                      class="form-control"
+                      [(ngModel)]="account.phone"
+                      id="phone"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      Please enter your password!
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <input
+                      placeholder="Email"
+                      type="email"
+                      name="email"
+                      [(ngModel)]="account.email"
+                      class="form-control"
+                      id="yourEmail"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      Please enter a valid Email adddress!
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <input
+                      placeholder="Password"
+                      type="password"
+                      [(ngModel)]="account.password"
+                      name="password"
+                      class="form-control"
+                      id="yourPassword"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      Please enter your password!
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <input
+                      placeholder="Repeat Password"
+                      type="password"
+                      name="password"
+                      [(ngModel)]="repeatPassword"
+                      class="form-control"
+                      id="yourPassword"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      Please enter your password!
+                    </div>
+                  </div>
+                  <br />
+
+                  <fieldset class="row mb-3">
+                    <div class="col-sm-10">
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="gridRadios"
+                          id="gridRadios2"
+                          [(ngModel)]="account.role"
+                          value="1"
+                          checked
+                          required
+                        />
+                        <label class="form-check-label" for="gridRadios2">
+                          Seller
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="gridRadios"
+                          [(ngModel)]="account.role"
+                          id="gridRadios3"
+                          value="2"
+                          required
+                        />
+                        <label class="form-check-label" for="gridRadios3">
+                          Customer
+                        </label>
+                      </div>
+                    </div>
+                  </fieldset>
+
+                  <div class="col-12">
+                    <button
+                      class="btn btn-primary w-100"
+                      type="submit"
+                      [disabled]="!registrationForm.form.valid"
+                    >
+                      Create Account
+                    </button>
+                  </div>
+                  <div class="col-12">
+                    <p class="small mb-0">
+                      Already have an account?
+                      <a routerLink="/login">Log in</a>
+                    </p>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
